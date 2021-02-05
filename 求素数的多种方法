@@ -1,0 +1,42 @@
+# 求素数
+# 求2~100的素数有哪些？
+## 方法一
+import numpy as np
+a = np.full(100,True)       #用一个字符列表来代替数字
+for i in range(2,50):
+    j=i+i                   #将i的倍数位置上的字符进行变换
+    while j<100:            #实用的防止越界办法
+        a[j]=False          #改变字符
+        j+=i
+for i in range(2,len(a)):   #用筛子进行筛选，素数是从2开始，我们就从2开始
+    if a[i]==True:
+        print(i,end=' ')    #打印出来
+
+## 方法二
+import math
+a=[2]
+for i in range(2,101):
+    for j in range(2,i):
+        if i%j==0:
+            break
+        else:
+            pass
+        if j>math.sqrt(i):
+            a.append(i)
+            break
+print(a)
+
+
+##方法三
+import math
+a=[2]               #初始列表，含有第一个素数
+for i in range(2,101):
+    for j in a:     #判断素数是否能做因子
+        if i%j==0:  #如果素数可以做因子就排除
+            break
+        else:
+            pass    #保证跳到下一个素数
+        if j>math.sqrt(i):  #当除数大于被除数的平方跟的时候，代表没有找到除1和本身的因子
+            a.append(i)     #这个数为素数添加进列表中
+            break
+print(a)
